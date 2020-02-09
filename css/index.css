@@ -1155,6 +1155,42 @@ body::after {
 .sidebar-ov-social__item--icon {
   font-size: 1.2em;
 }
+.sidebar-ov-feed {
+  padding: 0.5rem 0;
+  text-align: center;
+}
+.sidebar-ov-feed-icon {
+  margin-right: 0.3em;
+}
+.sidebar-ov-feed-email,
+.sidebar-ov-feed-rss {
+  display: inline-block;
+  width: 50%;
+}
+.sidebar-ov-feed-email__a,
+.sidebar-ov-feed-rss__a {
+  -webkit-transition: color 0.2s ease;
+  -moz-transition: color 0.2s ease;
+  -o-transition: color 0.2s ease;
+  -ms-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+.sidebar-ov-feed-email__a--icon,
+.sidebar-ov-feed-rss__a--icon {
+  margin-right: 0.2rem;
+}
+.sidebar-ov-feed-email__a {
+  color: #54bcff;
+}
+.sidebar-ov-feed-email__a:hover {
+  color: #10a1ff;
+}
+.sidebar-ov-feed-rss__a {
+  color: #ff8956;
+}
+.sidebar-ov-feed-rss__a:hover {
+  color: #ff5912;
+}
 .sidebar-ov-state {
   padding: 0.5rem 0;
   text-align: center;
@@ -1929,6 +1965,49 @@ body::after {
   white-space: normal;
   word-wrap: normal;
   word-break: break-all;
+}
+.reward {
+  text-align: center;
+}
+.reward-button {
+  display: inline-block;
+  margin: 1rem 0 1.5rem;
+  border-radius: 6px;
+  padding: 0.2rem 1rem;
+  color: #f5f6f7;
+  background-color: #ff6868;
+  -webkit-transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -ms-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+.reward-button:hover {
+  background-color: #e45c5c;
+}
+.reward-qr {
+  display: none;
+}
+.reward-qr-alipay,
+.reward-qr-wechat {
+  display: inline-block;
+  margin: 0 2rem;
+}
+.reward-qr-alipay__img,
+.reward-qr-wechat__img {
+  width: 200px;
+  height: 200px;
+}
+.reward-qr-alipay-text,
+.reward-qr-wechat-text {
+  margin: 0.5rem 0;
+}
+.reward-qr-alipay-text {
+  color: #1caceb;
+}
+.reward-qr-wechat-text {
+  color: #3cb034;
 }
 .back2top {
   position: fixed;
