@@ -1,0 +1,492 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="keywords" content="拖男, 拖男的博客"><meta name="description" content="很高兴与你相遇！"><title>hexo优化加速</title><link rel="icon" href="/images/hs.ico?v=1.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/favicon.ico?v=1.7.0" type="image/png" sizes="32x32"><link rel="alternate" href="/tuonan.very.sorry.remained.to.be.developed" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=1.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  fontawesome: {"prefix":"fa"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  post_widget: {"end_text":true},
+  night_mode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","word_wrap":false},
+  reward: true,
+  fancybox: false,
+  zoom_image: {"enable":true,"mask_color":"rgba(0,0,0,0.6)"},
+  gallery_waterfall: undefined,
+  lazyload: undefined,
+  pjax: undefined,
+  external_link: {"icon":{"enable":true,"name":"external-link"}},
+  shortcuts: undefined,
+  prompt: {"copy_success":"复制成功","copy_error":"复制失败","creative_commons":"冲冲冲","copy_button":"复制"}
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 4.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-btn fa fa-bars"></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__a" href="/"><i class="fa fa-home"></i>首页</a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__a" href="/archives/"><i class="fa fa-folder-open"></i>归档</a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__a" href="/categories/"><i class="fa fa-th"></i>分类</a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__a" href="/tags/"><i class="fa fa-tags"></i>标签</a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__a" href="/reward/"><i class="fa fa-gift"></i>打赏</a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__a" href="/about/"><i class="fa fa-user"></i>关于拖男</a></div></div><div class="header-nav-search"><i class="fa fa-search"></i><span>搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-info"><div class="header-info-inner"><div class="header-info-title">拖男的博客</div><div class="header-info-subtitle">难上加难</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content"><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-header-title">hexo优化加速</h1><div class="post-header-meta"><span class="post-header-meta-create"><i class="fa fa-calendar-o"></i><span>发表于 </span><span>2020-02-11</span></span><span class="post-header-meta-update"><i class="fa fa-calendar-check-o"></i><span>更新于 </span><span>2020-02-11</span></span><span class="post-header-meta-word-count"><i class="fa fa-file-word-o"></i><span>字数统计 </span><span>1.7k</span></span><span class="post-header-meta-reading-time"><i class="fa fa-clock-o"></i><span>阅读时长 </span><span>12m</span></span></div></header><div class="post-body"><div class="gallery" itemscope itemtype="http://schema.org/ImageGallery"><img class="gallery__img" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1581411172982&amp;di=4c20e35175e16bd37c44ef7b06e6a027&amp;imgtype=0&amp;src=http%3A%2F%2Fi2.yeyoucdn.com%2Fb5yvfc%2FYWxqaGBf%2Fcms3yeyou%2FhDttMYbljcFfAsa.jpg" itemprop="contentUrl"></div><p>不得不说，hexo博客速度真的是太慢了，还是建站前期的我全篇就几张图片都要载半天，试过不同的浏览器还是一样慢，看起来线路的问题，于是我上网查了一下发现有许多解决方法，看起来非常牛逼，但是按着一步一步下去却有很多大坑，昨天搞到晚上两三点才搞好，特此记录方式，以防未来再被坑。</p>
+
+        <h1 id="原因">
+          <span class="heading-link">原因</span>
+        </h1>
+      <p>博客加载慢主要有两个原因：</p>
+<p>​    1、站内原因：内容太多了、图片太多了，导致加载需要内容多，加载慢</p>
+<p>​    2、线路原因：托管网站的github是外网，访问外网肯定慢</p>
+
+        <h1 id="优化方法一">
+          <span class="heading-link">优化方法一</span>
+        </h1>
+      <p>针对第一个原因我们可以利用glup压缩，把一些静态资源高效压缩，减少请求的数据量从而达到优化博客访问速度的目的 。</p>
+
+        <h2 id="安装gulp">
+          <span class="heading-link">安装gulp</span>
+        </h2>
+      <p>首先安装gulp，执行以下命令：</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm insatll gulp -g</span><br></pre></td></tr></table></div></figure>
+
+<p>要实现gulp压缩需要安装以下五个模块：</p>
+<blockquote>
+<ul>
+<li>gulp-htmlclean       // 清理html</li>
+<li>gulp-htmlmin        // 压缩html</li>
+<li>gulp-minify-css     // 压缩css</li>
+<li>gulp-uglify            // 混淆js</li>
+<li>gulp-imagemin     // 压缩图片</li>
+</ul>
+</blockquote>
+<p> 安装模块： </p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-htmlclean gulp-htmlmin gulp-minify-css gulp-uglify gulp-imagemin --save</span><br></pre></td></tr></table></div></figure>
+
+
+
+<p> 安装的模块可以在根目录下的<code>package.json</code>文件里面看到。 </p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;gulp&quot;: &quot;^3.9.1&quot;,</span><br><span class="line">&quot;gulp-htmlclean&quot;: &quot;^2.7.14&quot;,</span><br><span class="line">&quot;gulp-htmlmin&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">&quot;gulp-imagemin&quot;: &quot;^3.3.0&quot;,</span><br><span class="line">&quot;gulp-minify-css&quot;: &quot;^1.2.4&quot;,</span><br><span class="line">&quot;gulp-uglify&quot;: &quot;^3.0.0&quot;,</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="添加gulpfile-js">
+          <span class="heading-link">添加gulpfile.js</span>
+        </h2>
+      <p>进入博客根目录，新建<code>gulpfile.js</code>文件，内容如下：</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">var gulp &#x3D; require(&#39;gulp&#39;);</span><br><span class="line">var minifycss &#x3D; require(&#39;gulp-minify-css&#39;);</span><br><span class="line">var uglify &#x3D; require(&#39;gulp-uglify&#39;);</span><br><span class="line">var htmlmin &#x3D; require(&#39;gulp-htmlmin&#39;);</span><br><span class="line">var htmlclean &#x3D; require(&#39;gulp-htmlclean&#39;);</span><br><span class="line">var imagemin &#x3D; require(&#39;gulp-imagemin&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 压缩html</span><br><span class="line">gulp.task(&#39;minify-html&#39;, function() &#123;</span><br><span class="line">    return gulp.src(&#39;.&#x2F;public&#x2F;**&#x2F;*.html&#39;)</span><br><span class="line">        .pipe(htmlclean())</span><br><span class="line">        .pipe(htmlmin(&#123;</span><br><span class="line">            removeComments: true,</span><br><span class="line">            minifyJS: true,</span><br><span class="line">            minifyCSS: true,</span><br><span class="line">            minifyURLs: true,</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(&#39;.&#x2F;public&#39;))</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 压缩css</span><br><span class="line">gulp.task(&#39;minify-css&#39;, function() &#123;</span><br><span class="line">    return gulp.src(&#39;.&#x2F;public&#x2F;**&#x2F;*.css&#39;)</span><br><span class="line">        .pipe(minifycss(&#123;</span><br><span class="line">            compatibility: &#39;ie8&#39;</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(&#39;.&#x2F;public&#39;));</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 压缩js</span><br><span class="line">gulp.task(&#39;minify-js&#39;, function() &#123;</span><br><span class="line">    return gulp.src(&#39;.&#x2F;public&#x2F;js&#x2F;**&#x2F;*.js&#39;)</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(gulp.dest(&#39;.&#x2F;public&#39;));</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 压缩图片</span><br><span class="line">gulp.task(&#39;minify-images&#39;, function() &#123;</span><br><span class="line">    return gulp.src(&#39;.&#x2F;public&#x2F;images&#x2F;**&#x2F;*.*&#39;)</span><br><span class="line">        .pipe(imagemin(</span><br><span class="line">        [imagemin.gifsicle(&#123;&#39;optimizationLevel&#39;: 3&#125;), </span><br><span class="line">        imagemin.jpegtran(&#123;&#39;progressive&#39;: true&#125;), </span><br><span class="line">        imagemin.optipng(&#123;&#39;optimizationLevel&#39;: 7&#125;), </span><br><span class="line">        imagemin.svgo()],</span><br><span class="line">        &#123;&#39;verbose&#39;: true&#125;))</span><br><span class="line">        .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;images&#39;))</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 默认任务</span><br><span class="line">gulp.task(&#39;default&#39;, [</span><br><span class="line">    &#39;minify-html&#39;,&#39;minify-css&#39;,&#39;minify-js&#39;,&#39;minify-images&#39;</span><br><span class="line">]);</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="开始压缩">
+          <span class="heading-link">开始压缩</span>
+        </h2>
+      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">gulp  &#x2F;&#x2F; 执行压缩，两条命令可以合并：hexo g &amp;&amp; gulp</span><br></pre></td></tr></table></div></figure>
+
+<p>然后就可以执行部署命令：</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="参考文章">
+          <span class="heading-link">参考文章</span>
+        </h2>
+      <p>以上内容为以下文章中总结</p>
+<blockquote>
+<ul>
+<li><span class="external-link"><a href="https://link.jianshu.com?t=http://sanyecao.me/hexo-minify.html" target="_blank" rel="noopener">Hexo优化方案 gulp插件静态资源压缩</a><i class="fa fa-external-link"></i></span></li>
+<li><span class="external-link"><a href="https://link.jianshu.com?t=https://www.karlzhou.com/articles/compress-minify-hexo/" target="_blank" rel="noopener">优化Hexo博客 - 压缩 HTML、CSS、JS、IMG 等</a><i class="fa fa-external-link"></i></span></li>
+<li><span class="external-link"><a href="https://link.jianshu.com?t=https://www.liuxinggang.com/2016-12-06-hexo%E5%8D%9A%E5%AE%A2%E8%BF%9B%E9%98%B6%EF%BC%8D%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" target="_blank" rel="noopener">hexo博客进阶－性能优化</a><i class="fa fa-external-link"></i></span></li>
+<li><span class="external-link"><a href="https://www.jianshu.com/p/93b63852f0b3" target="_blank" rel="noopener">Hexo博客之速度优化</a><i class="fa fa-external-link"></i></span></li>
+</ul>
+</blockquote>
+<p>这样大概就成功了，这方法按照以上教程一步步跟踪不会有问题，但是速度提升的也不是特别明显。</p>
+
+        <h1 id="优化方法二">
+          <span class="heading-link">优化方法二</span>
+        </h1>
+      <p>针对第二个原因，我们可以采取coding部署，<span class="external-link"><a href="https://link.jianshu.com?t=https://coding.net/" target="_blank" rel="noopener">Coding</a><i class="fa fa-external-link"></i></span>算是国内的Github，同样提供代码托管、项目管理和Pages服务等，因此我们可以像把网站部署在Github上一样，部署在Coding 上，通过配置<code>_config.yml</code>文件实现Github和Coding上的文件同时更新，然后通过域名分流解析，来达到网站加速的目的。</p>
+<p>（坑非常多）</p>
+
+        <h2 id="流程">
+          <span class="heading-link">流程</span>
+        </h2>
+      
+        <h3 id="注册账号">
+          <span class="heading-link">注册账号</span>
+        </h3>
+      <p>​    官网<span class="external-link"><a href="https://link.jianshu.com?t=https://coding.net/" target="_blank" rel="noopener">Coding</a><i class="fa fa-external-link"></i></span> </p>
+<p>###创建项目</p>
+<p><img src="/2020/02/11/hexo-accelerate/a.png" alt="是"></p>
+<p>项目名为你的coding账号名，例如我的账号名是tuonan，所以我新建的项目为tuonan，注意要在初始化项目那一项打勾 </p>
+<p><img src="/2020/02/11/hexo-accelerate/b.png" alt></p>
+
+        <h3 id="部署公钥">
+          <span class="heading-link">部署公钥</span>
+        </h3>
+      <p>点击右上角的个人账号 —&gt; 个人设置 —&gt; SSH公钥 —&gt; 新增公钥。</p>
+<p>Mac默认的公钥路径为<code>/Users/用户名/.ssh</code>，公钥文件为<code>id_rsa.pub</code>，复制内容添加进去就可以了。添加完成后以后上传代码的时候，就不再需要输入账号密码了。</p>
+<p><img src="/2020/02/11/hexo-accelerate/c.png" alt="1581392290125"></p>
+<p> <img src="/2020/02/11/hexo-accelerate/d.png" alt="d"></p>
+<blockquote>
+<p>测试 SSH 公钥是否添加成功：本地打开 Git Bash 窗口，输入一下命令：</p>
+<p><code>ssh -T git@coding.net</code></p>
+</blockquote>
+<p>若出现这种情况</p>
+<blockquote>
+<p><code>ssh: connect to host coding.net port 22: Connection refused</code></p>
+<p><img src="/2020/02/11/hexo-accelerate/e.png" alt="e"></p>
+</blockquote>
+<p>说明防火墙完全屏蔽了端口 22 ，这时候不要慌张，直接输入如下命令使用 Coding 提供的 443 端口 SSH 服务即可解决：</p>
+<blockquote>
+<p><code>ssh -T -p 443 git@git-ssh.coding.net</code></p>
+</blockquote>
+<p>接着会显示是否继续，选择 yes 继续，如果提示下列内容成功，即 SSH 公钥配置成功： </p>
+<p><img src="/2020/02/11/hexo-accelerate/f.png" alt="f"></p>
+
+        <h3 id="配置博客主文件">
+          <span class="heading-link">配置博客主文件</span>
+        </h3>
+      <p>打开 Hexo 博客主配置文件 <code>_config.yml</code>，找到 <code>deploy</code> 属性，作如下配置：</p>
+<p>deploy:</p>
+<p>​    type: git<br>    repository:<br>      github: #与原来一致<br>      coding:  #按自己的来，格式是这样<br>    branch: master</p>
+<p>按照下图在这里可以查到coding要填的东西，是红色区域内容</p>
+<p><img src="/2020/02/11/hexo-accelerate/g.png" alt></p>
+
+        <h3 id="修改域名解析">
+          <span class="heading-link">修改域名解析</span>
+        </h3>
+      <p>增加CNAME记录 ，修改之前将Github线路类型修改为国外，记录值不变。新建绑定到Coding的解析，线路类型为默认，记录值为<code>pages.coding.me</code> (这里就是坑之一，下面会解释，先别填)</p>
+<p><img src="/2020/02/11/hexo-accelerate/l.png" alt="l"></p>
+
+        <h3 id="Coding构建静态页面">
+          <span class="heading-link">Coding构建静态页面</span>
+        </h3>
+      <p><img src="/2020/02/11/hexo-accelerate/i.png" alt="i"></p>
+<p>点设置，这里一个天坑出现了</p>
+<p><img src="/2020/02/11/hexo-accelerate/j.png" alt="j"></p>
+<p>这里原本绑定的时候证书状态要申请才能正常啊，然后我一直申请一直申请，都是申请失败，申请了一个多小时，我发现事情并不对劲啊，然后我一百度出带问题了。</p>
+
+        <h4 id="第一个坑：coding记录值的问题">
+          <span class="heading-link">第一个坑：coding记录值的问题</span>
+        </h4>
+      <p>这里我卡了几个小时，在百度上几乎查了所有相关博客，都是要求记录值为<code>pages.coding.me</code> 或者是<code>（username).coding.me</code> ,真的是气到吐血！可能是以前版本的原因要求这么写。不断申请到想吐了，证书状态还是申请失败，最后实在没办法一直试，尝试了一下上面那张图的紫色笔遮挡部分，竟然就是要填这个。</p>
+
+        <h4 id="第二个坑：线路类型导致的问题">
+          <span class="heading-link">第二个坑：线路类型导致的问题</span>
+        </h4>
+      <p>申请证书时，coding在境内，github在境外，所以过程中要先把github的记录暂停，等证书申请成功了再继续打开。</p>
+<p>以上坑排除后，再申请证书，不出意外的话证书状态应该是正常了。</p>
+
+        <h3 id="立即部署">
+          <span class="heading-link">立即部署</span>
+        </h3>
+      <p><img src="/2020/02/11/hexo-accelerate/i.png" alt="i"></p>
+<p>点击立即部署，下面提升成功✔图标就差不多了，剩下的就是重启一下hexo就好了</p>
+<p>hexo clean、hexo g、hexo d</p>
+
+        <h1 id="结果及个人感悟">
+          <span class="heading-link">结果及个人感悟</span>
+        </h1>
+      <p>第二种方法速度真的改变很大，快了很多，虽然一番波折，但是结果很好值得，感觉有一点点成就感。</p>
+<p><img src="/2020/02/11/hexo-accelerate/hshs.png" alt="hshs"></p>
+</div><footer class="post-footer"><div class="post-end"><p><span>------ </span><span>本文结束，感谢阅读，希望你天天开心哦！！！</span><span> ------</span></p></div><div class="post-copyright"><div class="post-copyright-author"><span class="post-copyright-author-name">本文作者: </span><span class="post-copyright-author-value"><a href="http://www.tuonan.com">拖男</a></span></div><div class="post-copyright-link"><span class="post-copyright-link-name">本文链接: </span><span class="post-copyright-link-value"><a href="http://www.tuonan.com/2020/02/11/hexo-accelerate/">http://www.tuonan.com/2020/02/11/hexo-accelerate/</a></span></div><div class="post-copyright-notice"><span class="post-copyright-notice-name">版权声明: </span><span class="post-copyright-notice-value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><i class="post-tags-item__i fa fa-tags"></i><a class="post-tags-item__a" href="http://www.tuonan.com/tags/hexo%E3%80%81%E4%BC%98%E5%8C%96/">hexo、优化</a></span></div><div class="reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qr"><span class="reward-qr-alipay"><img class="reward-qr-alipay__img" src="/images/alipay.png"><div class="reward-qr-alipay-text">支付宝打赏</div></span><span class="reward-qr-wechat"><img class="reward-qr-wechat__img" src="/images/wechatpay.png"><div class="reward-qr-wechat-text">微信打赏</div></span></div></div><nav class="paginator"><div class="paginator-post"><div class="paginator-post-next"><a href="/2020/02/09/about-Front-matter/"><span>关于Front-matter的用法</span><i class="fa fa-chevron-right"></i></a></div></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><aside class="sidebar" id="sidebar"><div class="sidebar-inner"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#原因"><span class="toc-number">1.</span> <span class="toc-text">
+          原因
+        </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化方法一"><span class="toc-number">2.</span> <span class="toc-text">
+          优化方法一
+        </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装gulp"><span class="toc-number">2.1.</span> <span class="toc-text">
+          安装gulp
+        </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加gulpfile-js"><span class="toc-number">2.2.</span> <span class="toc-text">
+          添加gulpfile.js
+        </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始压缩"><span class="toc-number">2.3.</span> <span class="toc-text">
+          开始压缩
+        </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">2.4.</span> <span class="toc-text">
+          参考文章
+        </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化方法二"><span class="toc-number">3.</span> <span class="toc-text">
+          优化方法二
+        </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#流程"><span class="toc-number">3.1.</span> <span class="toc-text">
+          流程
+        </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册账号"><span class="toc-number">3.1.1.</span> <span class="toc-text">
+          注册账号
+        </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署公钥"><span class="toc-number">3.1.2.</span> <span class="toc-text">
+          部署公钥
+        </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置博客主文件"><span class="toc-number">3.1.3.</span> <span class="toc-text">
+          配置博客主文件
+        </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改域名解析"><span class="toc-number">3.1.4.</span> <span class="toc-text">
+          修改域名解析
+        </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Coding构建静态页面"><span class="toc-number">3.1.5.</span> <span class="toc-text">
+          Coding构建静态页面
+        </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一个坑：coding记录值的问题"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">
+          第一个坑：coding记录值的问题
+        </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二个坑：线路类型导致的问题"><span class="toc-number">3.1.5.2.</span> <span class="toc-text">
+          第二个坑：线路类型导致的问题
+        </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#立即部署"><span class="toc-number">3.1.6.</span> <span class="toc-text">
+          立即部署
+        </span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结果及个人感悟"><span class="toc-number">4.</span> <span class="toc-text">
+          结果及个人感悟
+        </span></a></li></ol></div></section><!-- ov = overview --><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/author.jpg" alt="avatar"></div></div><div class="sidebar-ov-social"><a class="sidebar-ov-social__item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><i class="sidebar-ov-social__item--icon fa fa-github"></i></a><a class="sidebar-ov-social__item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><i class="sidebar-ov-social__item--icon fa fa-google"></i></a><a class="sidebar-ov-social__item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><i class="sidebar-ov-social__item--icon fa fa-twitter"></i></a><a class="sidebar-ov-social__item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><i class="sidebar-ov-social__item--icon fa fa-youtube"></i></a><a class="sidebar-ov-social__item" href="137402865" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><i class="sidebar-ov-social__item--icon fa fa-qq"></i></a><a class="sidebar-ov-social__item" href="mmm" target="_blank" rel="noopener" data-popover="social.instagram" data-popover-pos="up"><i class="sidebar-ov-social__item--icon fa fa-instagram"></i></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-email"><a class="sidebar-ov-feed-email__a" href="tuonan.very.sorry.remained.to.be.developed" target="_blank" rel="noopener"><i class="sidebar-ov-feed-email__a--icon fa fa-envelope"></i><span>Email </span><span>订阅</span></a></span><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__a" href="/tuonan.very.sorry.remained.to.be.developed" target="_blank" rel="noopener"><i class="sidebar-ov-feed-rss__a--icon fa fa-rss"></i><span>RSS </span><span>订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state__a posts" href="/archives/"><div class="sidebar-ov-state__a--count">4</div><div class="sidebar-ov-state__a--name">归档</div></a><a class="sidebar-ov-state__a categories" href="/categories/"><div class="sidebar-ov-state__a--count">3</div><div class="sidebar-ov-state__a--name">分类</div></a><a class="sidebar-ov-state__a tags" href="/tags/"><div class="sidebar-ov-state__a--count">4</div><div class="sidebar-ov-state__a--name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="冲冲冲" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg" alt="冲冲冲"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span>你已阅读百分之 </span><span class="sidebar-reading-info-num">0</span></div><div class="sidebar-reading-line"></div></div></div></aside><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright &copy; 2020</span><span class="fa fa-heart footer-icon"></span><span>拖男.</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="progress"></div></div><div class="back2top" id="back2top"><i class="back2top-icon fa fa-rocket"></i></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="fa fa-meh-o"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keypress', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css('overflow', 'auto');
+  $('.search-popup')
+    .removeClass('show')
+    .velocity('stop')
+    .velocity('transition.expandOut', {
+      duration: 300
+    });
+  $('.search-mask')
+    .velocity('stop')
+    .velocity('transition.fadeOut', {
+      duration: 300
+    });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .addClass('show')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);</script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'pQW2kfqdrsCS2xtTRN3lfIU3-gzGzoHsz',
+    appKey: 'kSrNhJfdXYrXxTLlR2fdg8IO',
+    notify: true,
+    verify: true,
+    placeholder: '小美女小帅哥，快来玩呀！',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: false,
+    lang: '' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=1.7.0"></script><script src="/js/stun-boot.js?v=1.7.0"></script><script src="/js/scroll.js?v=1.7.0"></script><script src="/js/header.js?v=1.7.0"></script><script src="/js/sidebar.js?v=1.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/koharu.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
