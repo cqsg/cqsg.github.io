@@ -2271,6 +2271,10 @@ body::after {
   cursor: zoom-out;
   will-change: transform;
 }
+.gallery__img {
+  margin-bottom: 10px;
+  width: 160px;
+}
 .mode {
   position: relative;
   border: 0;
@@ -2850,6 +2854,9 @@ html.nightmode {
   .post-list .post {
     margin: 0 0 0.8rem;
     padding: 0.8rem;
+  }
+  .gallery__img {
+    width: 100%;
   }
   .friends-plugin__item {
     margin: 0;

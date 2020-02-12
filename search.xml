@@ -60,6 +60,33 @@
     
     
     <entry>
+      <title>建站技术上的问题</title>
+      <link href="/2020/02/10/askfor-this-blog/"/>
+      <url>/2020/02/10/askfor-this-blog/</url>
+      
+        <content type="html"><![CDATA[        <h1 id="问题一">          <span class="heading-link">问题一</span>        </h1>      <p>在把hexo连到coding之后，执行hexo deploy指令时，必须再输密码，试过好多网上方法不管用，求解</p>        <h1 id="问题二（已解决）">          <span class="heading-link">问题二（已解决）</span>        </h1>      <p>在把hexo连到coding之后，评论会出现以下情况：</p><p><img src="/2020/02/10/askfor-this-blog/a.png" alt></p><p>也是得不到解决</p><p>解决方法：我是白痴 </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 说明 </category>
+          
+          <category> 建站 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 说明 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于Front-matter的用法</title>
       <link href="/2020/02/09/about-Front-matter/"/>
       <url>/2020/02/09/about-Front-matter/</url>
