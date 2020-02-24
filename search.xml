@@ -13,9 +13,9 @@
       
       <categories>
           
-          <category> 打卡 </category>
-          
           <category> 数据结构 </category>
+          
+          <category> 打卡 </category>
           
       </categories>
       
@@ -105,9 +105,9 @@
       
         <tags>
             
-            <tag> Markdown </tag>
-            
             <tag> hexo博客 </tag>
+            
+            <tag> Markdown </tag>
             
         </tags>
       
